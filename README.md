@@ -1,50 +1,111 @@
-# Welcome to your Expo app 👋
+# GlowCart
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+GlowCart is a React Native e-commerce application built with Expo. It provides a seamless shopping experience with features like user authentication, product browsing, wishlist management, and more. The app is designed to run on iOS, Android, and web platforms.
 
-## Get started
+## Features
 
-1. Install dependencies
+- User authentication (login, register, onboarding)
+- Product catalog and details
+- Shopping cart and wishlist
+- Responsive design with dark/light mode support
+- File-based routing with Expo Router
+- Cross-platform compatibility (iOS, Android, Web)
 
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (version 18 or later)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+
+For mobile development:
+- [Android Studio](https://developer.android.com/studio) for Android emulator
+- [Xcode](https://developer.apple.com/xcode/) for iOS simulator (macOS only)
+
+## Setup and Installation
+
+1. **Clone the repository** (if not already done):
+   ```bash
+   git clone <repository-url>
+   cd glowcart
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
+   or
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Running the App
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+After starting the development server, you'll see options to run the app on different platforms:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Development Build**: For a full native experience
+- **Android Emulator**: Requires Android Studio
+- **iOS Simulator**: Requires Xcode (macOS only)
+- **Expo Go**: Quick testing on physical devices
+- **Web Browser**: For web version
 
-## Get a fresh project
+### Platform-specific commands:
 
-When you're ready, run:
+- **Android**:
+  ```bash
+  npm run android
+  ```
+
+- **iOS**:
+  ```bash
+  npm run ios
+  ```
+
+- **Web**:
+  ```bash
+  npm run web
+  ```
+
+## Project Structure
+
+```
+glowcart/
+├── app/                    # Main app directory (file-based routing)
+│   ├── (tabs)/            # Tab navigation screens
+│   ├── product/           # Product-related screens
+│   ├── index.js           # Home screen
+│   ├── login.js           # Login screen
+│   ├── register.js        # Registration screen
+│   └── onboarding.js      # Onboarding flow
+├── components/            # Reusable UI components
+├── constants/             # App constants (colors, etc.)
+├── data/                  # Static data (products.json)
+├── hooks/                 # Custom React hooks
+├── utils/                 # Utility functions
+├── assets/                # Images, fonts, and other assets
+└── rn-cli/                # Alternative CLI version (if needed)
+```
+
+## Development
+
+- Edit files in the `app/` directory to modify screens
+- Add components in the `components/` directory
+- Update styles and themes in `constants/Colors.ts`
+- Manage data in the `data/` directory
+
+## Reset Project
+
+To start fresh with a blank app:
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This moves the current app code to `app-example/` and creates a new blank `app/` directory.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
