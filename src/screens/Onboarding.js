@@ -1,93 +1,121 @@
 import React from 'react';
-import { Dimensions, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+  SafeAreaView,
+  Dimensions,
+} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
+const IMAGE_HEIGHT = height * 0.6; // Top section height ~60%
 
 export default function Onboarding({ navigation }) {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <Image
-        source={require('../assets/images/image1.png')}
-        style={styles.topImage}
-        resizeMode="contain"
-      />
-      <View style={styles.bottomPanel}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+
+      {/* TOP IMAGE SECTION */}
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../../assets/images/image1.png')} // <-- Your image here
+          style={styles.image}
+          resizeMode="cover"
+        />
+      </View>
+
+      {/* BOTTOM SECTION */}
+      <View style={styles.bottomSection}>
         <Text style={styles.brand}>Viorra</Text>
         <Text style={styles.tagline}>Your Beauty, Delivered.</Text>
-        <TouchableOpacity style={styles.cta} onPress={() => navigation.navigate('Login')} activeOpacity={0.9}>
+
+        <TouchableOpacity
+          style={styles.cta}
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('Login')}
+        >
           <Text style={styles.ctaText}>Get Started</Text>
         </TouchableOpacity>
-        <View style={styles.progressTrack}>
-          <View style={styles.progressFill} />
+
+        {/* Pagination */}
+        <View style={styles.pagination}>
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#C9A7A2', alignItems: 'center' },
-  topImage: {
-    width: '100%',
-    height: height * 1,
-    marginTop: -100,
+  container: {
+    flex: 1,
+    backgroundColor: '#e8cfc9', // fallback color to blend with image
   },
-  bottomPanel: {
+  imageContainer: {
+    height: '60%',
     width: '100%',
+    backgroundColor: '#C9A7A2'
+  },
+  image: {
+    marginTop: '10%',
+    height: '100%',
+    width: '100%',
+  },
+  bottomSection: {
+    flex: 1,
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 0,
+    justifyContent: 'flex-start',
+    paddingHorizontal: 32,
+    paddingTop: 24,
+    paddingBottom: 32,
+    backgroundColor: '#C9A7A2',
   },
   brand: {
+    fontSize: 42,
+    fontWeight: '600',
     color: '#fff',
-    fontFamily: 'Italiana',
-    fontWeight: '400',
-    fontSize: 56,
-    letterSpacing: -0.2,
-    textAlign: 'center',
+    fontFamily: 'serif', // replace with custom font like PlayfairDisplay for exact match
     marginBottom: 8,
-    textShadowColor: 'rgba(0,0,0,0.08)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
-
   },
   tagline: {
-    fontSize: 21,
+    fontSize: 18,
     color: '#fff',
-    opacity: 0.98,
+    opacity: 0.85,
     marginBottom: 28,
-    textAlign: 'center',
-    fontWeight: '400',
   },
   cta: {
-    width: Math.min(0.8 * width, 195),
-    height: 52,
-    backgroundColor: '#C04A52',
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-    shadowColor: '#a94753',
-    shadowOpacity: 0.14,
-    shadowOffset: { width: 0, height: 7 },
-    shadowRadius: 16,
+    backgroundColor: '#B34C4C',
+    paddingVertical: 14,
+    paddingHorizontal: 64,
+    borderRadius: 24,
+    marginBottom: 24,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
     elevation: 4,
   },
-  ctaText: { color: '#fff', fontSize: 22, fontWeight: '500',  },
-  progressTrack: {
-    height: 8,
-    width: 120,
-    backgroundColor: 'rgba(255,255,255,0.45)',
-    borderRadius: 999,
-    marginTop: 0,
-    marginBottom: 12,
-    overflow: 'hidden',
+  ctaText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '600',
   },
-  progressFill: {
-    height: '100%',
-    width: 42,
-    backgroundColor: 'rgba(255,255,255,0.95)',
-    borderRadius: 999,
+  pagination: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  dot: {
+    height: 6,
+    width: 28,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  activeDot: {
+    backgroundColor: '#fff',
+    width: 40,
   },
 });

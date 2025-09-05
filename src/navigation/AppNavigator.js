@@ -10,7 +10,7 @@ import Offers from '../screens/Offers';
 import Wishlist from '../screens/Wishlist';
 import ProductDetails from '../screens/ProductDetails';
 import { AuthContext } from '../context/AuthContext';
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -22,13 +22,38 @@ function MainTabs() {
     const count = items.reduce((s, it) => s + (it.qty || 1), 0);
     return count ? <Text style={{ color: '#fff', backgroundColor: '#9c4a46', paddingHorizontal: 6, borderRadius: 10, overflow: 'hidden' }}>{count}</Text> : null;
   };
-  const icon = (glyph) => ({ color }) => <Text style={{ color, fontSize: 18 }}>{glyph}</Text>;
   return (
     <Tabs.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#9c4a46', tabBarInactiveTintColor: '#8a8a8a', tabBarLabelStyle: { fontSize: 12 } }}>
-      <Tabs.Screen name="Home" component={Home} options={{ tabBarIcon: icon('🏠') }} />
-      <Tabs.Screen name="Offers" component={Offers} options={{ tabBarIcon: icon('🏷️'), title: 'Offers' }} />
-      <Tabs.Screen name="Wishlist" component={Wishlist} options={{ tabBarIcon: icon('♡'), title: 'Wishlist' }} />
-      <Tabs.Screen name="Profile" component={Profile} options={{ tabBarIcon: icon('👤'), tabBarBadge: () => <BagBadge /> }} />
+      <Tabs.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image source={require('../../assets/icons/home.png')} style={{ width: 20, height: 20, tintColor: color }} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Offers"
+        component={Offers}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image source={require('../../assets/icons/offer.png')} style={{ width: 20, height: 20, tintColor: color }} />
+          ),
+          title: 'Offers',
+        }}
+      />
+      <Tabs.Screen
+        name="Wishlist"
+        component={Wishlist}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image source={require('../../assets/icons/wishlist.png')} style={{ width: 22, height: 20, tintColor: color }} />
+          ),
+          title: 'Wishlist',
+        }}
+      />
+      <Tabs.Screen name="Profile" component={Profile} options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>{'👤'}</Text>, tabBarBadge: () => <BagBadge /> }} />
     </Tabs.Navigator>
   );
 }
